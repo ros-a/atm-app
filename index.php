@@ -29,3 +29,15 @@ foreach ($input as $line) {
     }
     $sessions[$i][] = $line;
 }
+
+// instantiating BankAccounts for each session
+$output = [];
+foreach ($sessions as $session) {
+    $accountNr = (int)$session[0][0];
+    $pin = (int)$session[0][1];
+    $pinEntered = (int)$session[0][2];
+    $balance = (int)$session[1][0];
+    $overdraftFacility = (int)$session[1][1];
+    $bankAccount = new BankAccount($accountNr, $pin, $balance, $overdraftFacility);
+    $transactions = array_slice($session, 2);
+}
