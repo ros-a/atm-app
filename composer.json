@@ -1,0 +1,19 @@
+{
+    "name": "ros-a/atm-app",
+    "description": "ATM application",
+    "authors": [
+        {
+            "name": "Rosa",
+            "email": "rosa@droogers.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    }
+}
