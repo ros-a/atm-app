@@ -3,16 +3,25 @@
 This app is responsible for validating customer account details and performing basic operations including balance
 inquiries and cash withdrawals. The app receives data from a third party in an agreed upon format.
 
-Two test input text files are saved in the folder testInput, so that a test output can be produced.
+Three test input text files can be found in the folder testInput. They can be used to produce a test output.
 
-To test the app, run the following command in the terminal from the root folder:
+To test the app, run the following commands in the terminal from the root folder.
 
-```
-$ php index.php testInput1.txt
-```
-
-Or test the second test input like so:
+To test the first test input:
 
 ```
-$ php index.php testInput2.txt
+$ php script.php testInput/testInput1.txt
 ```
+
+To test the second test input:
+
+```
+$ php script.php testInput/testInput2.txt
+```
+
+To test the third test input:
+
+```
+$ php script.php testInput/testInput3.txt
+```
+
