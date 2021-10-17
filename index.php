@@ -30,14 +30,30 @@ foreach ($input as $line) {
     $sessions[$i][] = $line;
 }
 
-// instantiating BankAccounts for each session
+// instantiating BankAccounts for each session and calling transaction methods
 $output = [];
 foreach ($sessions as $session) {
-    $accountNr = (int)$session[0][0];
-    $pin = (int)$session[0][1];
-    $pinEntered = (int)$session[0][2];
+    $accountNr = (int) $session[0][0];
+    $pin = (int) $session[0][1];
+    $pinEntered = (int) $session[0][2];
     $balance = (int)$session[1][0];
-    $overdraftFacility = (int)$session[1][1];
+    $overdraftFacility = (int) $session[1][1];
     $bankAccount = new BankAccount($accountNr, $pin, $balance, $overdraftFacility);
+    if (!$bankAccount->checkPin($pinEntered)) {
+        $output[] = 'ACCOUNT_ERR';
+        continue;
+    };
     $transactions = array_slice($session, 2);
+    foreach ($transactions as $transaction) {
+        if ($transaction === "B") {
+            $output[] = $bankAccount->getBalance();
+        } else {
+            $newBalance = $bankAccount->withdraw( (int) $transaction[1], $atm, $pinEntered);
+            $output[] = $newBalance;
+        }
+    }
 }
+
+print_r($output);
+
+fclose($file);
