@@ -10,3 +10,22 @@ $input = [];
 while (!feof($file)) {
     $input[] = fgets($file);
 }
+
+// instantiating Atm with amount of cash held, and removing these lines from $input
+$atm = new Atm((int)$input[0]);
+array_splice($input, 0, 2);
+
+// dividing $input into multidimensional array of separate sessions
+$sessions = [];
+$i = 0;
+foreach ($input as $line) {
+    $line = trim($line);
+    if(strpos($line, " ")) {
+        $line = explode(" ", $line);
+    }
+    if(!$line) {
+        $i++;
+        continue;
+    }
+    $sessions[$i][] = $line;
+}
